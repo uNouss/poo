@@ -1,6 +1,7 @@
 .metadata
 bin/
 tmp/
+doc/
 *.tmp
 *.bak
 *.swp
@@ -9,6 +10,10 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+.classpath
+.project
+.gitignore
+.git/
 
 # External tool builders
 .externalToolBuilders/

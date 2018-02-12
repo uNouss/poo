@@ -1,7 +1,7 @@
 package tp12;
 
 public class JeuAPlusieurs {
-	Joueur[] joueurs;
+	public Joueur[] joueurs;
 
 	public JeuAPlusieurs(int nbjoueurs) {
 		this.joueurs = new Joueur[nbjoueurs];
@@ -15,6 +15,7 @@ public class JeuAPlusieurs {
 	
 	public void gagnant() {
 		int idxG = 0;
+		// recherche de l'indice du plus petit lancers
 		for(int idx = 0; idx < this.joueurs.length; idx++) {
 			System.out.println(this.joueurs[idx].getNom()+": lancers = "
 								+ this.joueurs[idx].getLancers()+ " et total = "
@@ -26,8 +27,12 @@ public class JeuAPlusieurs {
 					idxG = idx;
 			}
 		}
-		
-		System.out.println(this.joueurs[idxG].getNom());
+
+		//affichage des personnes qui ont ce meme indice
+		for(int idx = 0; idx < this.joueurs.length; idx++) {
+			if( this.joueurs[idxG].getLancers() == this.joueurs[idx].getLancers())
+				System.out.println(this.joueurs[idx].getNom());
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -47,9 +52,6 @@ public class JeuAPlusieurs {
 				jap.joueurs[idx].jouer();
 			}while(jap.joueurs[idx].getTotal() < TARGET );
 		}
-		
-		
-		
 		jap.gagnant();
 	}	
 	

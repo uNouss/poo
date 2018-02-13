@@ -8,18 +8,15 @@ public class JeuAPlusieurs {
 		Saisie input = new Saisie();
 		
 		for(int idx = 0; idx < this.joueurs.length; idx++) {
-			String nomJoueur = input.saisieChaine("Saisir le nom d'un joueur");
+			String nomJoueur = input.saisieChaine("Saisir le nom du joueur " + (idx+1));
 			this.joueurs[idx] = new Joueur(nomJoueur);
 		}
 	}
 	
-	private void gagnant() {
+	private Joueur[] gagnant() {
 		int idxG = 0;
 		// recherche de l'indice du plus petit lancers
 		for(int idx = 0; idx < this.joueurs.length; idx++) {
-			System.out.println(this.joueurs[idx].getNom()+": lancers = "
-								+ this.joueurs[idx].getLancers()+ " et total = "
-								+ this.joueurs[idx].getTotal());
 			if(this.joueurs[idxG].getLancers() > this.joueurs[idx].getLancers()) {
 				idxG = idx;
 			} else if (this.joueurs[idxG].getLancers() == this.joueurs[idx].getLancers()) {
@@ -28,31 +25,42 @@ public class JeuAPlusieurs {
 			}
 		}
 
-		//affichage des personnes qui ont ce meme indice
+		//recherche des gagnant avec le bon indice
+		Joueur[] jgTmp  = new Joueur[this.joueurs.length];
+		int idx = 0;
         for (Joueur joueur : this.joueurs) {
             if (this.joueurs[idxG].getLancers() == joueur.getLancers())
-                System.out.println(joueur.getNom());
+                jgTmp[idx++] = joueur;
         }
+        Joueur[] jg = new Joueur[idx];
+        for(int i = 0; i < jg.length; i++){
+        	jg[i] = jgTmp[i];
+        }
+        return jg;
 	}
 	
 	public static void main(String[] args) {
 		final int TARGET = 20;
+		boolean winner = false;
 		
 		Saisie input = new Saisie();
 		
 		int nbJoueurs;
 		do {
-			nbJoueurs = input.saisieEntier("Saisir un entier");
+			nbJoueurs = input.saisieEntier("saisir le nombre de joueur");
 		}while (nbJoueurs < 0);
 		
 		JeuAPlusieurs jap = new JeuAPlusieurs(nbJoueurs);
 		
-		for(int idx = 0; idx < jap.joueurs.length; idx++) {
-			do {
-				jap.joueurs[idx].jouer();
-			}while(jap.joueurs[idx].getTotal() < TARGET );
-		}
-		jap.gagnant();
-	}	
+		while(!winner) {
+            for (int idx = 0; idx < jap.joueurs.length; idx++) {
+                jap.joueurs[idx].jouer();
+                winner = jap.joueurs[idx].getTotal() >= TARGET;
+            }
+        }
+        for (Joueur joueur: jap.gagnant()) {
+            System.out.println(joueur.toString());
+        }
+    }
 	
 }

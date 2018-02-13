@@ -13,6 +13,10 @@ public class Joueur {
 		this.total = 0;
 	}
 
+	public String toString() {
+		return this.nom+": "+this.total+" points en "+this.lancers+" lancers";
+	}
+
 	public String getNom() {
 		return nom;
 	}

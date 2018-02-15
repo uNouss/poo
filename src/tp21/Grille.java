@@ -16,6 +16,11 @@ public class Grille {
 		this.max = 0;
 	}
 	
+	
+	public int[][] getGrille(){
+		return this.grille;
+	}
+	
 	/**
 	 * Remplie la grille avec des valeurs aléatoires comprises entre min et max
 	 * @param min : répresente la valeur minimale 
@@ -33,6 +38,47 @@ public class Grille {
 			}
 		}
 		return true;
+	}
+	
+	
+	/**
+	 * 
+	 * @param min
+	 * @param max
+	 * @param doublon
+	 * @param taux
+	 * @return
+	 */
+	public boolean remplir(int min, int max, boolean doublon, double taux) {
+		if(min >= max ) return false;
+		Random r = new Random();
+		
+		for(int row = 0; row < grille.length; row++) {
+			for(int col = 0; col < grille[row].length; col++) {
+				boolean ppt = r.nextDouble() <= taux;
+				if(ppt) {
+					int val = r.nextInt(max-min)+min;
+					if( ! doublon ) {
+						while( estPresent(val)) {
+							val = r.nextInt(max-min)+min;
+						}
+					}
+					grille[row][col] = val;
+					if( this.max < val) this.max = val;
+				}
+			}
+		}
+		return true;
+	}
+	
+	private boolean estPresent(int value) {
+		for (int row = 0; row < grille.length; row++) {
+			for (int col = 0; col < grille[row].length; col++) {
+				if(grille[row][col] == value)
+					return true;
+			}
+		}
+		return false;
 	}
 	
 	/**

@@ -2,12 +2,12 @@ package tp22;
 
 import tp21.Grille;
 
-public class JoueurBingo {
+public class Joueur {
 	public String nom;
 	public Grille maGrille;
 	private int nbGood;
 	
-	public JoueurBingo(String nom) {
+	public Joueur(String nom) {
 		this.nom = nom;
 		this.maGrille = new Grille(3, 5);
 		this.maGrille.remplir(1, 99, false, 1);

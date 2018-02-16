@@ -33,7 +33,5 @@ public class EssaiBingo {
                 break;
             }
         }while (true);
-
 	}
-
 }

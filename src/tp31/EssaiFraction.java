@@ -36,7 +36,10 @@ public class EssaiFraction {
 		EssaiFraction.afficher(fractions);	
 		System.out.println();
 		EssaiFraction.trier(fractions);
-		EssaiFraction.afficher(fractions);	
+		EssaiFraction.afficher(fractions);
+		
+		System.out.println("somme de fraction:   "+fractions[0]+" + "+fractions[1]+" = "+fractions[0].addition(fractions[1]));
+		System.out.println("produit de fraction: "+fractions[0]+" x "+fractions[1]+" = "+fractions[0].multiplication(fractions[1]));
 	}
 
 }

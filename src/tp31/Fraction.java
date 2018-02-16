@@ -39,27 +39,16 @@ public class Fraction {
 		this.denominateur = denominateur;
 	}
 	
-	private boolean sontAuMemeDenominateur(Fraction f) {
-		return this.denominateur == f.denominateur;
-	}
-	
 	public int compareTo(Fraction f) {
 		return this.numerateur*f.denominateur - f.numerateur*this.denominateur;
 	}
-
-	private void mettreAuMemeDenominateur(Fraction f) {
-		this.setDenominateur(this.denominateur*f.denominateur);
-		f.setDenominateur(this.denominateur*f.denominateur);
-		this.setNumerateur(this.numerateur*f.denominateur);
-		this.setNumerateur(f.numerateur*this.denominateur);
-	}
 	
 	public Fraction addition(Fraction f) {
-		if(!sontAuMemeDenominateur(f)) {
-			this.mettreAuMemeDenominateur(f);
+		if(this.denominateur != f.denominateur) {
+			return new Fraction(this.numerateur*f.denominateur + f.numerateur*this.denominateur,
+								this.denominateur*f.denominateur);
 		}
-		return new Fraction(this.numerateur+f.numerateur,
-							this.denominateur+f.denominateur);
+		return new Fraction(this.numerateur+f.numerateur, this.denominateur);
 	}
 	
 	public Fraction addition(int n) {

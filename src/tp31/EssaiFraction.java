@@ -3,29 +3,33 @@ package tp31;
 import java.util.Random;
 
 public class EssaiFraction {
-	
-	public static void trier(Fraction[] fractions) {
+
+	private static void echanger(Fraction[] fractions, int idx1, int idx2) {
+		Fraction tmp = fractions[idx1];
+		fractions[idx1] = fractions[idx2];
+		fractions[idx2] = tmp;
+	}
+
+	private static void trier(Fraction[] fractions) {
 		for (int idx = fractions.length ; idx > 1; idx--) {
 			for(int idxB = 0; idxB < idx - 1; idxB++) {
 				if(fractions[idxB].compareTo(fractions[idxB+1]) > 1 ) {
-					Fraction tmp = fractions[idxB];
-					fractions[idxB] = fractions[idxB+1];
-					fractions[idxB+1] = tmp;
+					EssaiFraction.echanger(fractions, idxB, idxB + 1);
 				}
 			}
 		}
 	}
 
-	public static void initier(Fraction[] fractions) {
+	private static void initier(Fraction[] fractions) {
 		Random r = new Random();
 		for (int idx = 0; idx < fractions.length; idx++) {
 			fractions[idx] = new Fraction(r.nextInt(10)+1, r.nextInt(10)+1);
 		}
 	}
 
-	public static void afficher(Fraction[] fractions) {
-		for (int idx = 0; idx < fractions.length; idx++) {
-			System.out.println(String.format("%5s", fractions[idx])+ " ~ " + fractions[idx].fractionToDouble());
+	private static void afficher(Fraction[] fractions) {
+		for (Fraction fraction : fractions) {
+			System.out.println(String.format("%5s", fraction) + " ~ " + fraction.fractionToDouble());
 		}
 	}
 

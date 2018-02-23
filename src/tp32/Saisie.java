@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 public class Saisie {
+	private static final String DATE_SEP = "/"; 
 	public static int nbSaisieDate = 1;
 	
 	public static int controle(int min, int max) {
@@ -27,20 +28,27 @@ public class Saisie {
 	public static LocalDate date() {
 		String input;
 		do {
-			input = JOptionPane.showInputDialog(Saisie.nbSaisieDate+":saisir une date au format AAAA-MM-JJ");
+			input = JOptionPane.showInputDialog(Saisie.nbSaisieDate+":saisir une date au format DAY"+DATE_SEP+"MONTH"+DATE_SEP+"YEAR");
 		}while(!isValidDate(input));
 		Saisie.nbSaisieDate++;
-		return LocalDate.parse(input); // tester avec of
+		String[] date = input.split(DATE_SEP);
+		//return LocalDate.parse(input);
+		return LocalDate.of(Integer.parseInt(date[2]),
+							Integer.parseInt(date[1]),
+							Integer.parseInt(date[0])); // tester avec of
 	}
 	
 	public static boolean isValidDate(String input) {
-		String[] date = input.split("-");
+		String[] date = input.split(DATE_SEP);
 		return date.length == 3
-				&& Saisie.isInteger(date[0]) && date[0].length() == 4
-				&& Saisie.isInteger(date[1]) && date[1].length() == 2
-				&& Saisie.isInteger(date[2]) && date[1].length() == 2
-				&& isValid(date[2], 1, LocalDate.now().lengthOfMonth())
+				&& Saisie.isInteger(date[0]) //&& date[0].length() == 4
+				&& Saisie.isInteger(date[1]) //&& date[1].length() == 2
+				&& Saisie.isInteger(date[2]) //&& date[1].length() == 2
+				&& isValid(date[0], 1, LocalDate.of(
+					Integer.parseInt(date[2]),
+					Integer.parseInt(date[1]),
+					1).lengthOfMonth())
 				&& isValid(date[1], 1, 12)
-				&& isValid(date[0], 0, Short.MAX_VALUE);
+				&& isValid(date[2], 0, Short.MAX_VALUE);
 	}
 }

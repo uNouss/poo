@@ -20,6 +20,7 @@ public class EssaiAgenda {
 											LocalDate.of(r.nextInt(3000)+1000, r.nextInt(12)+1, LocalDate.now().getDayOfMonth()),
 											LocalDate.now().plusDays(r.nextInt(1000)+1));
 			agenda.ajoutEvt(event);
+			//System.out.println(event);
 		}
 		
 		System.out.println(agenda);

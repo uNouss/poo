@@ -27,7 +27,7 @@ public class Agenda {
 	public void ajoutEvt(Evenement event) {
 		int idx = 0;
 		for(Evenement evt: events) {
-			if( evt.getDeb().isAfter(event.getDeb())) {
+			if( evt.getDeb().isBefore(event.getDeb())) {
 				break;
 			}
 			idx++;
@@ -67,7 +67,7 @@ public class Agenda {
 	}
 	
 	private boolean isValidIndex(int idx) {
-		return idx >= 0 && idx < events.size();
+		return idx >= 0 && idx <= events.size();
 	}
 	
 	public void supprEntre(Evenement evt1, Evenement evt2) {

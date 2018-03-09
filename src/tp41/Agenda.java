@@ -1,6 +1,9 @@
 package tp41;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+
+import tp42.Contact;
 
 public class Agenda {
 	private ArrayList<Evenement> events;
@@ -75,4 +78,25 @@ public class Agenda {
 		this.supprChevauchants(tmp);
 	}
 	
+	public ArrayList<Contact> getAllContact(Evenement evt) {
+		return evt.getContacts();
+	}
+	
+	public ArrayList<Contact> getContactForPeriod(LocalDate begin, LocalDate end){
+		if(begin.isAfter(end)) {
+			LocalDate tmp = begin;
+			begin = end;
+			end = begin;
+		}
+		ArrayList<Contact> res = new ArrayList<>();
+		for(Evenement event: events) {
+		}
+		
+		
+		return res;
+	}
+	
+	public ArrayList<Evenement> getEventFor(Contact c){
+		return new ArrayList<Evenement>();
+	}
 }

@@ -99,7 +99,7 @@ public class EtudiantNote {
 	}
 	
 	public static void main(String[] args) {
-		EtudiantNote etu = new EtudiantNote(new Etudiant("A", "B", LocalDate.now(), 123456, "Info", 12.5), new int[] {1, 2, 3, 4, 5});
+		EtudiantNote etu = new EtudiantNote(new Etudiant("A", "B", LocalDate.now(), "Info"), new int[] {1, 2, 3, 4, 5});
 		System.out.println(etu);
 	}
 	

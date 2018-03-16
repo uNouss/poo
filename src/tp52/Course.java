@@ -17,27 +17,28 @@ public class Course {
         p.setJeu(jeu);
         Random random = new Random();
 
-        int tour
+        int joueur = random.nextInt(2);
 
         while(jeu[taille-1][taille-1] == 0){
             int direction = random.nextInt(3);
             int x1 = 0, y1 = 0, x2, y2;
+            int a;
+            int b;
             switch (direction){
-                int a, b;
                 case 0:
                     if((y1+1) < taille){
-                        b = y+1;
+                        b = y1+1;
                     }
                     break;
                 case 1:
-                    if((x+1) < taille && (y+1) < taille){
-                        a = x + 1;
-                        b = y + 1;
+                    if((x1+1) < taille && (y1+1) < taille){
+                        a = x1 + 1;
+                        b = y1 + 1;
                     }
                     break;
                 default:
-                    if((x+1) < taille){
-                        a = x + 1;
+                    if((x1+1) < taille){
+                        a = x1 + 1;
                     }
                     break;
             }
@@ -45,6 +46,6 @@ public class Course {
     }
 
     private int swap(int joueur){
-        return !;
+        return (joueur == 0) ? 1: 0;
     }
 }

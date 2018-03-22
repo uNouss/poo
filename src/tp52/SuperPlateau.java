@@ -35,7 +35,6 @@ public class SuperPlateau {
         if(jeu[a][b] == 0) {
             jeu[a][b] = jeu[x][y];
             jeu[x][y] = 0;
-            //this.setJeu(jeu);
             return true;
         }
         return false;

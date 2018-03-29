@@ -31,5 +31,8 @@ public class EssaiElevage {
         System.out.println("gain "+monElevage.gainPossible());
 
         System.out.println(monElevage);
+
+        System.out.println(monElevage.passageAbattoir());
+        System.out.println(monElevage);
     }
 }

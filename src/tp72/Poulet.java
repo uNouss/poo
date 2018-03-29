@@ -10,7 +10,10 @@ public class Poulet extends Volaille{
 
     @Override
     public String toString() {
-        return "Poulet \n\t"+ super.toString() + ": PRIX_INITIAL = " + PRIX_INITIAL + ", POIDS_MIN =" + POIDS_MIN+"\n";
+        return "Poulet : "+ super.toString() +
+                ": PRIX_INITIAL = " + PRIX_INITIAL +
+                ", POIDS_MIN    = " + POIDS_MIN +
+                "\n";
     }
 
     public double getPRIX_INITIAL() {

@@ -23,13 +23,13 @@ public class Elevage implements Iterable<Volaille>{
 
     public Volaille rechercher(int volaille){
         if(isValide(volaille)) return null;
-        Volaille v;
-        for(v: volailles){
-            if(v.getIdentite() == volaille) {
-                break;
-            }
+        int idVolaille = 0;
+        int taille = volailles.size();
+        while(idVolaille < taille && volailles.get(idVolaille).getIdentite() != volaille){
+            idVolaille++;
         }
-        return v;
+        if(idVolaille >= taille ) return null;
+        return volailles.get(idVolaille);
     }
 
     private boolean isValide(int volaille) {
@@ -43,10 +43,10 @@ public class Elevage implements Iterable<Volaille>{
 
     @Override
     public String toString() {
-        return "Elevage{" +
-                "volailles=" + volailles +
-                ", TAILLEMAX=" + TAILLEMAX +
-                ", nbBetes=" + nbBetes +
+        return "Elevage{\n" +
+                "volailles \n" + volailles +
+                ", TAILLEMAX =" + TAILLEMAX +
+                ", nbBetes   =" + nbBetes +
                 "}\n";
     }
 
@@ -61,7 +61,16 @@ public class Elevage implements Iterable<Volaille>{
         return gain;
     }
 
-
+    public ArrayList<Volaille> passageAbattoir(){
+        ArrayList<Volaille> aLabatoire = new ArrayList<>();
+        Volaille v;
+        IterateurVolaille itVolaille = new IterateurVolaille(volailles);
+        while(itVolaille.hasNext()){
+            v = itVolaille.next();
+            aLabatoire.add(v);
+        }
+        return aLabatoire;
+    }
 
     @Override
     public Iterator<Volaille> iterator() {

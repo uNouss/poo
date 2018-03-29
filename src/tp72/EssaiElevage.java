@@ -18,9 +18,9 @@ public class EssaiElevage {
         }
         monElevage.ajouter(new Canard(825, 0.750));
 
-        //System.out.println(monElevage);
+        System.out.println(monElevage);
 
-        //System.out.println("gain "+monElevage.gainPossible());
+        System.out.println("gain "+monElevage.gainPossible());
 
         monElevage.changerPoids(150, 1.3);
         monElevage.changerPoids(151, 1.3);

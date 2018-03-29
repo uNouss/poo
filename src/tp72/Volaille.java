@@ -27,7 +27,7 @@ public abstract class Volaille {
 
     @Override
     public String toString() {
-        return "identite = " + identite + ", poids = " + poids;
+        return "[ identite = " + identite + ", poids = " + poids + "]";
     }
 
     public abstract double getPRIX_INITIAL();

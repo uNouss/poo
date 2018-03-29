@@ -43,11 +43,11 @@ public class Elevage implements Iterable<Volaille>{
 
     @Override
     public String toString() {
-        return "Elevage{\n" +
-                "volailles \n" + volailles +
-                ", TAILLEMAX =" + TAILLEMAX +
-                ", nbBetes   =" + nbBetes +
-                "}\n";
+        String res = "";
+        for(Volaille v: volailles){
+            res += v + "\n";
+        }
+        return res + "TAILLEMAX = " + TAILLEMAX + ", nbBetes = " + nbBetes + "\n";
     }
 
     public double gainPossible(){

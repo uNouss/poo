@@ -10,10 +10,7 @@ public class Canard extends Volaille {
 
     @Override
     public String toString() {
-        return "  Canard  : "+ super.toString() +
-                ": PRIX_INITIAL = " + PRIX_INITIAL +
-                ", POIDS_MIN    = " + POIDS_MIN+
-                "\n";
+        return "Canard"+ super.toString();
     }
 
     public double getPRIX_INITIAL() {

@@ -69,6 +69,7 @@ public class Elevage implements Iterable<Volaille>{
             v = itVolaille.next();
             aLabatoire.add(v);
         }
+        volailles.removeAll(aLabatoire);
         return aLabatoire;
     }
 

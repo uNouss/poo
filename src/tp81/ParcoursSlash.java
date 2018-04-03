@@ -18,17 +18,14 @@ public class ParcoursSlash extends Parcours{
     }
 
     private void suivant() {
-        int tmp = ycor;
         ycor++;
         xcor--;
         if(xcor < 0 && ycor < tab.length){
             xcor = ycor;
             ycor = 0;
         }
-        else if(ycor >= tab.length){
+        if(ycor >= tab.length){
             xcor = 3;
-            ycor = xcor;
-            System.out.println(tmp + " ");
         }
     }
 }

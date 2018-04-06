@@ -10,16 +10,11 @@ public class OrdoPseudoEquitable extends OrdoAvecPriorite{
 
     @Override
     public Prioritaire plusPrioritaire() {
-        Prioritaire p = super.plusPrioritaire();
-        int priority = p.getPriorite();
         for(int i = 0; i < priorite.length; i++) {
-            priorite[i] += 1;
+            if(priorite[i] > i+1) {
+                return ordofile[i].plusPrioritaire();
+            }
         }
-        priorite[priority] = 0;
-        ((Processus)p).execute();
-        return null;
+        return super.plusPrioritaire();
     }
-
-
-
 }

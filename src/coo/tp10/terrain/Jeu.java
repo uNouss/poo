@@ -24,7 +24,10 @@ public class Jeu {
 
         joueurs = new Taupe[this.NBJ];
         for(int idJ = 0; idJ < joueurs.length; idJ++){
-            joueurs[idJ] = new Taupe(idJ, plateau, idJ, idJ);
+            joueurs[idJ] = new Taupe(idJ, plateau, idJ+2, idJ+2);
+            plateau.poserTaupe(joueurs[idJ].getCoordonnees().getAbscisse(),
+                                joueurs[idJ].getCoordonnees().getOrdonne(),
+                                joueurs[idJ]);
         }
     }
 

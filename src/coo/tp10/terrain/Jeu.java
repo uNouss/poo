@@ -20,11 +20,11 @@ public class Jeu {
         this.plateau = new Terrain(this.TAILLE);
         // TIRAGE AU SORT
         Random rand = new Random();
-        this.j = rand.nextInt(this.NBJ);
+        this.j = rand.nextInt(this.NBJ)+1;
 
         joueurs = new Taupe[this.NBJ];
         for(int idJ = 0; idJ < joueurs.length; idJ++){
-            joueurs[idJ] = new Taupe(idJ, plateau, idJ+2, idJ+2);
+            joueurs[idJ] = new Taupe(idJ+1, plateau, idJ+3, idJ+4);
             plateau.poserTaupe(joueurs[idJ].getCoordonnees().getAbscisse(),
                                 joueurs[idJ].getCoordonnees().getOrdonne(),
                                 joueurs[idJ]);
@@ -32,11 +32,14 @@ public class Jeu {
     }
 
     public int finJeu(){
-        return this.plateau.estTrou(joueurs[j].getCoordonnees().getAbscisse(), joueurs[j].getCoordonnees().getOrdonne());
+        if(this.joueurs[j-1].getEquipe() != this.plateau.estTrou(joueurs[j-1].getCoordonnees().getAbscisse(), joueurs[j-1].getCoordonnees().getOrdonne())){
+            return this.plateau.estTrou(joueurs[j-1].getCoordonnees().getAbscisse(), joueurs[j-1].getCoordonnees().getOrdonne());
+        }
+        return -1;
     }
 
     public void changerJoueur(){
-        this.j = (j == 1) ? 0: 1;
+        this.j = (j == 1) ? 2: 1;
     }
 
     public void affichage(){
@@ -48,12 +51,12 @@ public class Jeu {
         int dir;
         do {
             dir = saisie.saisieEntier("Saisir un entier pour une direction [ 1=HAUT, 2=DROITE, 3=BAS, 4=GAUCHE ]");
-        }while( dir < 1 && dir > 4);
+        }while( !(dir >= 1 && dir <= 4));
 
         int act;
         do{
             act = saisie.saisieEntier("Saisir un entier pour une action (1=Deplacer, 2=Creuser");
-        }while( act < 1 && act > 2);
+        }while( !(act >= 1 && act <= 2));
         Direction direction;
         switch (dir){
             case 1: direction = Direction.HAUT; break;
@@ -64,8 +67,8 @@ public class Jeu {
 
         Action action;
         switch (act){
-            case 1: action = new Deplacer(joueurs[j], direction); break;
-            default: action = new Creuser(joueurs[j], direction); break;
+            case 1: action = new Deplacer(joueurs[j-1], direction); break;
+            default: action = new Creuser(joueurs[j-1], direction); break;
         }
         return action;
     }
@@ -75,7 +78,7 @@ public class Jeu {
         jeu.initialisation();
         jeu.affichage();
         while (jeu.finJeu() == -1) {
-            System.out.println(jeu.joueurs[jeu.j]);
+            System.out.println(jeu.joueurs[jeu.j-1]);
             Action a = jeu.saisie();
             a.agit();
             jeu.changerJoueur();

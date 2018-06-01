@@ -24,9 +24,7 @@ public class Validation {
                         for(int i = 0; i < nombre; i++){
                             switch (type) {
                                 case 1: {
-                                    if(!sc.nextBoolean()){
-                                        throw new StructureInvalideException();
-                                    }
+                                    System.out.println(sc.nextBoolean());
                                     break;
                                 }
                                 case 2: {
@@ -42,8 +40,6 @@ public class Validation {
                     }
                     catch (InputMismatchException ime){
                         System.out.println("InputMismatchException");
-                    } catch (StructureInvalideException e) {
-                        System.out.println("StructureInvalideException");
                     }
                     sc.close();
                 } catch (NoSuchElementException nsee) {
